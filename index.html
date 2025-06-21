@@ -92,7 +92,7 @@
         desc: "Scan untuk melihat naga terbang dalam AR!",
         qr: "/qr/naga.png",
         available: true,
-        css: "/styles/naga.css"
+        html: "/dragon.html"
       },
       {
         name: "Koala",
@@ -100,7 +100,7 @@
         desc: "Segera hadir di koleksi AR kami!",
         qr: null,
         available: false,
-        css: "/styles/koala.css"
+        html: "/koala.html"
       },
       {
         name: "Kucing",
@@ -108,7 +108,7 @@
         desc: "Segera hadir di koleksi AR kami!",
         qr: null,
         available: false,
-        css: "/styles/kucing.css"
+        html: "/cat.html"
       },
       {
         name: "Gajah",
@@ -116,7 +116,7 @@
         desc: "Segera hadir di koleksi AR kami!",
         qr: null,
         available: false,
-        css: "/styles/gajah.css"
+        html: "/elephant.html"
       }
     ];
 
@@ -138,7 +138,7 @@
         <p class="text-sm ${item.available ? "text-gray-500" : "text-gray-400"} mb-3">${item.desc}</p>
         ${
           item.available
-            ? `<a href="ar.html?origami=${item.name}" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Scan Origami</a>`
+            ? `<a href="${item.html}" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Scan Origami</a>`
             : `<span class="text-xs italic text-gray-400">Coming Soon</span>`
         }
       `;
