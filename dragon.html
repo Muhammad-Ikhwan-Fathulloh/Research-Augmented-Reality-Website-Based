@@ -2,11 +2,14 @@
 <html lang="id">
 <head>
   <meta charset="utf-8" />
-  <title>AR Naga Origami</title>
+  <title>AR Gambar</title>
 
   <!-- A-Frame & MindAR -->
   <script src="https://cdn.jsdelivr.net/npm/aframe@1.2.0/dist/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <style>
     body, html {
@@ -14,24 +17,31 @@
       overflow: hidden;
       height: 100%;
     }
+
     #ar-container {
       width: 100vw;
       height: 100vh;
       position: relative;
     }
-    .dragon-container {
-      font-size: 16px;
-      height: 25em;
-      width: 31.25em;
+
+    #ui {
       position: absolute;
-      transform: translate(-50%, -50%);
-      top: 50%;
-      left: 50%;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
     }
   </style>
-  <link rel="stylesheet" href="/styles/dragon.css">
 </head>
 <body>
+
+<!-- UI Tombol -->
+<div id="ui" class="btn-group">
+  <!-- <button class="btn btn-success" onclick="document.querySelector('#arId').setAttribute('visible', true)">Tampilkan</button>
+  <button class="btn btn-secondary" onclick="document.querySelector('#arId').setAttribute('visible', false)">Sembunyikan</button> -->
+  <a href="/index.html" class="btn btn-primary">Home</a>
+</div>
+
+<!-- AR Container -->
 <div id="ar-container">
   <a-scene
     mindar-image="imageTargetSrc: ./assets/dragon.mind; autoStart: true;"
@@ -41,37 +51,29 @@
     vr-mode-ui="enabled: false"
     device-orientation-permission-ui="enabled: false"
   >
-    <a-assets></a-assets>
+    <!-- Asset Gambar -->
+    <a-assets>
+      <img id="testImg" src="./assets/nocturnailed.png" />
+    </a-assets>
+
+    <!-- Kamera dan Pencahayaan -->
     <a-entity light="type: ambient; intensity: 1"></a-entity>
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
+    <!-- Target Marker & Plane -->
     <a-entity mindar-image-target="targetIndex: 0">
-      <a-entity id="html-dragon" geometry="primitive: plane; height: 1; width: 1.5" position="0 0 0" rotation="-90 0 0">
-        <a-html value='<div class="dragon-container">
-          <div class="face">
-            <div class="eye"></div>
-            <div class="nostril"></div>
-            <div class="ear"></div>
-            <div class="horn horn-l"></div>
-            <div class="horn horn-r"></div>
-          </div>
-          <div class="body">
-            <div class="stomach"></div>
-          </div>
-          <div class="wing wing-l"></div>
-          <div class="wing wing-r"></div>
-          <div class="arm arm-l"></div>
-          <div class="arm arm-r"></div>
-          <div class="forearm forearm-l"></div>
-          <div class="forearm forearm-r"></div>
-          <div class="leg leg-l"></div>
-          <div class="leg leg-r"></div>
-          <div class="shadow"></div>
-        </div>' width="1.5" height="1">
-        </a-html>
-      </a-entity>
+      <a-plane
+        id="arId"
+        src="#testImg"
+        width="1"
+        height="0.552"
+        position="0 0 0"
+        rotation="-90 0 0"
+        visible="true"
+      ></a-plane>
     </a-entity>
   </a-scene>
 </div>
+
 </body>
 </html>
