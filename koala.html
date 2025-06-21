@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Koala Animation</title>
+  <style>
+    /* Kontainer Utama */
+    .koala-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 70vh;
+      background-color: #a8d8ea;
+    }
+
+    /* Koala */
+    .koala {
+      position: relative;
+      width: 190px;
+      height: 150px;
+      background-color: #8e8e8e;
+      border-radius: 50%;
+      animation: bounce 2s ease-in-out infinite;
+      z-index: 10;
+    }
+
+    /* Telinga */
+    .koala-ear {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: #8e8e8e;
+      border-radius: 50%;
+      top: -20px;
+      z-index: 20;
+    }
+
+    /* Posisi dan rotasi telinga kiri dan kanan */
+    .koala-ear.left {
+      left: -50px;
+      transform: rotate(-15deg);
+    }
+    .koala-ear.right {
+      right: -50px;
+      transform: rotate(15deg);
+    }
+
+    /* Lingkaran kecil di dalam telinga */
+    .koala-ear::before {
+      content: "";
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      background-color: #d3d3d3;
+      border-radius: 50%;
+      top: 15px;
+      left: 15px;
+    }
+
+    /* Wajah */
+    .koala-face {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      top: 30px;
+      z-index: 30;
+    }
+
+    /* Wajah untuk Mata */
+    .koala-eyes {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    /* Mata */
+    .koala-eye {
+      position: relative;
+      width: 50px;
+      height: 50px;
+      background-color: white;
+      border-radius: 100%;
+      margin: 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .koala-pupil {
+      width: 30px;
+      height: 30px;
+      background-color: black;
+      border-radius: 50%;
+      animation: eyeMovement 4s infinite ease-in-out;
+      transform: translateY(5px);
+    }
+
+    /* Hidung */
+    .koala-nose {
+      width: 40px;
+      height: 60px;
+      background-color: black;
+      border-radius: 50%;
+      margin-top: -5px;
+      box-shadow: inset -5px 0 15px rgba(255,255,255,0.3);
+    }
+
+    /* Badan */
+    .koala-body {
+      position: absolute;
+      width: 170px;
+      height: 190px;
+      background-color: #8e8e8e;
+      border-radius: 50%;
+      top: 120px;
+      left: 10px;
+      z-index: 5;
+      animation: bodyBounce 2s ease-in-out infinite;
+      box-shadow: 0 8px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Lingkaran kecil di dalam badan */
+    .koala-body::before {
+      content: "";
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      background-color: #d3d3d3;
+      border-radius: 50%;
+      top: 50px;
+      left: 20px;
+      z-index: -1;
+      box-shadow: inset 0 0 30px #eee;
+    }
+
+    /* Kaki */
+    .koala-leg {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      background-color: #8e8e8e;
+      border-radius: 50%;
+      top: 280px;
+      box-shadow: 0 4px 5px rgba(0,0,0,0.1);
+      animation: legBounce 2s ease-in-out infinite;
+      z-index: 5;
+    }
+
+    /* Lingkaran kecil di dalam kaki */
+    .koala-leg::before {
+      content: "";
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-color: #d3d3d3;
+      border-radius: 50%;
+      top: 10px;
+      left: 10px;
+      z-index: 5;
+    }
+
+    /* Posisi dan rotasi kaki kiri dan kanan */
+    .koala-leg.left {
+      left: -5px;
+      transform: rotate(-5deg);
+      animation-delay: 0s;
+    }
+    .koala-leg.right {
+      right: -5px;
+      transform: rotate(5deg);
+      animation-delay: 1s;
+    }
+
+    /* Animasi Lompatan */
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-30px);
+      }
+    }
+
+    /* Animasi Badan naik turun */
+    @keyframes bodyBounce {
+      0%, 100% {
+        top: 120px;
+      }
+      50% {
+        top: 110px;
+      }
+    }
+
+    /* Animasi kaki naik turun */
+    @keyframes legBounce {
+      0%, 100% {
+        top: 280px;
+      }
+      50% {
+        top: 270px;
+      }
+    }
+
+    /* Animasi Mata */
+    @keyframes eyeMovement {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      25% {
+        transform: translateY(10px);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+      75% {
+        transform: translateY(5px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="koala-container">
+    <div class="koala">
+      <div class="koala-ear left"></div>
+      <div class="koala-ear right"></div>
+      <div class="koala-face">
+        <div class="koala-eyes">
+          <div class="koala-eye left">
+            <div class="koala-pupil"></div>
+          </div>
+          <div class="koala-eye right">
+            <div class="koala-pupil"></div>
+          </div>
+        </div>
+        <div class="koala-nose"></div>
+      </div>
+
+      <div class="koala-body"></div>
+
+      <div class="koala-leg left"></div>
+      <div class="koala-leg right"></div>
+    </div>
+  </div>
+</body>
+</html>

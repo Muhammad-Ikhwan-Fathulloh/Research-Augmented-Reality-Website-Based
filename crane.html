@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Origami Crane 3D Interaktif</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: transparent;
+      overflow: hidden;
+    }
+
+    .origami {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      perspective: 1000px;
+      transform-style: preserve-3d;
+    }
+
+    #craneGroup {
+      transform-box: fill-box;
+      transform-origin: center center;
+      transform-style: preserve-3d;
+    }
+
+    .origami svg {
+      height: 75vh;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<div class="origami">
+  <svg id="crane" width="1080" height="1080" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
+    <g id="craneGroup">
+      <!-- Semua path seperti sebelumnya -->
+      <path id="beakBack" d="M1543.248,1081.944,1429.09,1037.67l-87.364,129.31,117.064-94.366Z" transform="translate(-1235.694 -717.764)" fill="#00f5ff" stroke="#fff" stroke-width="2" />
+      <path id="beakFront" d="M1543.248,1100.58l-132.8,66.4,112.991-110.657Z" transform="translate(-1304.416 -717.764)" fill="#01ccd5" stroke="#fff" stroke-width="2" />
+      <path id="leftWing" d="M1390.656,1617.81l-51.264-160.771-246.952-242.3,542.839,111.84Z" transform="translate(-1078.44 -717.764)" fill="#00f5ff" stroke="#fff" stroke-width="2" />
+      <path id="neckBack" d="M1430.257,1617.81h-73.4l-93.193-561.487Z" transform="translate(-1044.646 -717.764)" fill="#01ccd5" stroke="#fff" stroke-width="2" />
+      <path id="Path_5" d="M1071.464,1599.174l-9.319,44.262L941,1641.1l11.652-86.2Z" transform="translate(-363.183 -717.764)" fill="#01ccd5" stroke="#fff" stroke-width="2" />
+      <path id="Path_6" d="M1260.179,1554.9l-11.652,86.2-188.714,37.273,41.946-175.907Z" transform="translate(-670.711 -717.764)" fill="#01ccd5" stroke="#fff" stroke-width="2" />
+      <path id="neckFront" d="M1355.7,1678.376l-170.078-622.052,88.531,25.62,156.1,284.242Z" transform="translate(-966.599 -717.764)" fill="#00f5ff" stroke="#fff" stroke-width="2" />
+      <path id="rightWing" d="M582.384,1502.469,882.928,1394.14l335.3,359.812Z" transform="translate(-151.337 -717.764)" fill="#00f5ff" stroke="#fff" stroke-width="2" />
+      <path id="bodyTop" d="M1218.232,1394.14,1180.948,1259,950.3,1366.185l-32.61,136.283Z" transform="translate(-486.642 -717.764)" fill="#00f5ff" stroke="#fff" stroke-width="2" />
+      <path id="tail" d="M954.973,762.764,666.075,1259l37.284,135.139Z" transform="translate(28.232 -717.764)" fill="#00f5ff" stroke="#fff" stroke-width="2" />
+      <rect id="frame" width="1080" height="1080" fill="none" />
+    </g>
+  </svg>
+</div>
+
+<!-- GSAP & Draggable -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.1/Draggable.min.js"></script>
+
+<script>
+  const craneGroup = document.getElementById("craneGroup");
+
+  // Timeline animasi
+  const tl = gsap.timeline({ defaults: { ease: "back.out(2)" } });
+
+  tl.set(craneGroup, { z: 0.01 });
+
+  tl.to("#tail", {
+    duration: 1,
+    repeat: -1,
+    yoyo: true,
+    rotation: -15,
+    transformOrigin: "100% left"
+  }, 0);
+
+  tl.to("#rightWing", {
+    duration: 1,
+    repeat: -1,
+    yoyo: true,
+    rotationZ: -5,
+    transformOrigin: "0% 0% -100px"
+  }, 0);
+
+  tl.to("#leftWing", {
+    duration: 1,
+    repeat: -1,
+    yoyo: true,
+    rotation: 10,
+    transformOrigin: "center right"
+  }, 0);
+
+  tl.to("#neckFront,#neckBack", {
+    duration: 1,
+    repeat: -1,
+    yoyo: true,
+    rotation: 10,
+    transformOrigin: "bottom right"
+  }, 0);
+
+  tl.to("#beakFront,#beakBack", {
+    duration: 1,
+    repeat: -1,
+    yoyo: true,
+    xPercent: 75,
+    svgOrigin: "40% 60%"
+  }, 0);
+
+  // Draggable interaktif (rotasi 3D)
+  gsap.set("#craneGroup", { rotationX: 0, rotationY: 0, transformPerspective: 800 });
+  Draggable.create("#craneGroup", {
+    type: "rotationX,rotationY",
+    edgeResistance: 0.8,
+    inertia: true
+  });
+</script>
+
+</body>
+</html>
