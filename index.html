@@ -70,11 +70,13 @@
     </div>
   </section>
 
-  <!-- Origami Animations Modular -->
-  <section class="koala-container"></section>
-  <section class="naga-container"></section>
-  <section class="kucing-container"></section>
-  <section class="gajah-container"></section>
+  <!-- Origami Gallery -->
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-10">Koleksi Origami</h2>
+      <div id="galleryCards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    </div>
+  </section>
 
   <footer class="py-6 bg-gray-100 text-center text-sm text-gray-600">
     Dibuat oleh <a href="https://nocturnailed.com/" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Nocturnailed</a>
@@ -85,6 +87,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.1/Draggable.min.js"></script>
 
   <script>
+    // AR Origami List
     const origamiData = [
       {
         name: "Naga",
@@ -119,19 +122,18 @@
         html: "/elephant.html"
       }
     ];
-
-    const container = document.getElementById("origamiCards");
+  
+    const containerAR = document.getElementById("origamiCards");
     origamiData.forEach(item => {
       const card = document.createElement("div");
       card.className = `border p-4 rounded-xl shadow transition flex flex-col items-center text-center ${
         item.available ? "bg-white hover:shadow-md" : "bg-gray-100 opacity-70"
       }`;
-
-      // Gambar hanya ditampilkan jika available
+  
       const imageHTML = item.available
         ? `<img src="${item.image}" alt="Origami ${item.name}" class="w-full h-48 object-cover rounded mb-4" />`
         : "";
-
+  
       card.innerHTML = `
         ${imageHTML}
         <h3 class="text-xl font-semibold ${item.available ? "text-gray-800" : "text-gray-400"}">${item.name}</h3>
@@ -142,8 +144,50 @@
             : `<span class="text-xs italic text-gray-400">Coming Soon</span>`
         }
       `;
-      container.appendChild(card);
+      containerAR.appendChild(card);
     });
-  </script>
+  
+    // Dokumentasi Origami List
+    const origamiGalleryData = [
+      { name: "Caucasus Beetle", image: "/images/gallery/origami-caucasus-beetle.jpg", desc: "Dokumentasi karya origami.", available: false, html: null },
+      { name: "Chicken", image: "/images/gallery/origami-chicken.jpg", desc: "Dokumentasi karya origami.", available: false, html: null },
+      { name: "Eagle", image: "/images/gallery/origami-eagle.jpg", desc: "Dokumentasi karya origami.", available: false, html: null },
+      { name: "Elasmosaurus", image: "/images/gallery/origami-elasmosaurus.jpg", desc: "Dokumentasi karya origami.", available: false, html: null },
+      { name: "Elephant", image: "/images/gallery/origami-elephant.jpg", desc: "Dokumentasi karya origami.", available: false, html: null },
+      { name: "Falcona", image: "/images/gallery/origami-falcona.jpg", desc: "Dokumentasi karya origami.", available: false, html: null },
+      { name: "Frog", image: "/images/gallery/origami-frog.jpg", desc: "Dokumentasi karya origami.", available: false, html: null },
+      { name: "Garuda", image: "/images/gallery/origami-garuda.jpg", desc: "Dokumentasi karya origami.", available: false, html: null },
+      { name: "Griphon", image: "/images/gallery/origami-griphon.jpg", desc: "Dokumentasi karya origami.", available: false, html: null },
+      { name: "Hanoman", image: "/images/gallery/origami-hanoman.jpg", desc: "Dokumentasi karya origami.", available: false, html: null },
+      { name: "Hercules Beetle", image: "/images/gallery/origami-hercules-beetle.jpg", desc: "Dokumentasi karya origami.", available: false, html: null },
+      { name: "Horse", image: "/images/gallery/origami-horse.jpg", desc: "Dokumentasi karya origami.", available: false, html: null },
+      { name: "Lion", image: "/images/gallery/origami-lion.jpg", desc: "Dokumentasi karya origami.", available: false, html: null },
+      { name: "Lizardon", image: "/images/gallery/origami-lizardon.jpg", desc: "Dokumentasi karya origami.", available: false, html: null },
+      { name: "Penguin", image: "/images/gallery/origami-penguin.jpg", desc: "Dokumentasi karya origami.", available: false, html: null },
+      { name: "Rayquaza", image: "/images/gallery/origami-rayquaza.jpg", desc: "Dokumentasi karya origami.", available: false, html: null },
+      { name: "Sheep", image: "/images/gallery/origami-sheep.jpg", desc: "Dokumentasi karya origami.", available: false, html: null },
+      { name: "Warrior", image: "/images/gallery/origami-warrior.jpg", desc: "Dokumentasi karya origami.", available: false, html: null },
+      { name: "Winged Dragon", image: "/images/gallery/origami-winged-dragon.jpg", desc: "Dokumentasi karya origami.", available: false, html: null }
+    ];
+  
+    const containerGallery = document.getElementById("galleryCards");
+    origamiGalleryData.forEach(item => {
+      const card = document.createElement("div");
+      card.className = `border p-4 rounded-xl shadow transition flex flex-col items-center text-center ${
+        item.available ? "bg-white hover:shadow-md" : "bg-gray-100 opacity-70"
+      }`;
+  
+      const imageHTML = `<img src="${item.image}" alt="Origami ${item.name}" class="w-full h-48 object-cover rounded mb-4" />`;
+  
+      card.innerHTML = `
+        ${imageHTML}
+        <h3 class="text-xl font-semibold ${item.available ? "text-gray-800" : "text-gray-400"}">${item.name}</h3>
+        <p class="text-sm ${item.available ? "text-gray-500" : "text-gray-400"} mb-3">${item.desc}</p>
+        <span class="text-xs italic text-gray-400">Karya: Muhammad Ikhwan Fathulloh</span>
+      `;
+  
+      containerGallery.appendChild(card);
+    });
+  </script>  
 </body>
 </html>
